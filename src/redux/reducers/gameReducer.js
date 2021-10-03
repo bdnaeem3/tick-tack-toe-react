@@ -1,9 +1,16 @@
-import { PLAYER_X, PLAYER_X_CHOICES, PLAYER_O_CHOICES } from "../types";
+import {
+  PLAYER_X,
+  PLAYER_X_CHOICES,
+  PLAYER_O_CHOICES,
+  WINNER,
+  REFRESH,
+} from "../types";
 
 const initialState = {
   isPlayerX: true,
   playerXChoices: [],
   playerOChoices: [],
+  winner: "",
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -23,6 +30,13 @@ const gameReducer = (state = initialState, action) => {
         ...state,
         playerOChoices: [...state.playerOChoices, action.choice],
       };
+    case WINNER:
+      return {
+        ...state,
+        winner: action.winner,
+      };
+    case REFRESH:
+      return initialState;
     default:
       return state;
   }
